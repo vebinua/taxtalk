@@ -1,6 +1,6 @@
 import React from 'react';
 
-const taxCategories = [
+export const taxCategories = [
   { id: 1, name: 'Income Tax', icon: '💰', color: '#34C759' },
   { id: 2, name: 'GST', icon: '🧾', color: '#007AFF' },
   { id: 3, name: 'Property Tax', icon: '🏠', color: '#FF9500' },
@@ -15,13 +15,18 @@ const taxCategories = [
   { id: 12, name: 'Business & Corporate Taxes', icon: '🏢', color: '#64D2FF' }
 ];
 
-export function TaxCategories() {
+interface TaxCategoriesProps {
+  onCategoryClick: (categoryId: number) => void;
+}
+
+export function TaxCategories({ onCategoryClick }: TaxCategoriesProps) {
   return (
     <div className="px-6 sm:px-8 py-8 pb-20 max-w-7xl mx-auto">
       <div className="grid grid-cols-4 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6">
         {taxCategories.map((category) => (
           <button
             key={category.id}
+            onClick={() => onCategoryClick(category.id)}
             className="flex flex-col items-center gap-2 group"
             style={{ WebkitTapHighlightColor: 'transparent' }}
           >
