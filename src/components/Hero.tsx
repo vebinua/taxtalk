@@ -17,11 +17,11 @@ export function Hero() {
 
       <div className="relative h-full flex items-center justify-center px-4 sm:px-6">
         <div className="text-center max-w-4xl">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight">
             Your Gateway to Tax Knowledge
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed">
-            Everything you need to know
+          <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">
+            Gain access to exclusive video content, expert discussions, and tax learning resources designed for professionals in Singapore.
           </p>
         </div>
       </div>
