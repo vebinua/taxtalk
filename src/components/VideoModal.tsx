@@ -77,12 +77,6 @@ export function VideoModal({ isOpen, video, onClose, hasAccess, onPurchase }: Vi
                 </h2>
                 <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
                   <span>{video.duration_minutes} minutes</span>
-                  <span>•</span>
-                  <span>{video.view_count} views</span>
-                  <span>•</span>
-                  <span className="font-semibold" style={{ color: '#827546' }}>
-                    ${video.price.toFixed(2)}
-                  </span>
                 </div>
               </div>
             </div>
