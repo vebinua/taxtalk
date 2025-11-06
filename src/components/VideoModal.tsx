@@ -44,18 +44,18 @@ export function VideoModal({ isOpen, video, onClose, hasAccess, onPurchase }: Vi
   });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-2 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-lg max-w-5xl w-full my-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 overflow-y-auto" style={{ backgroundColor: 'rgba(0, 0, 0, 0.95)' }}>
+      <div className="bg-black rounded-none sm:rounded-2xl max-w-6xl w-full my-auto shadow-2xl overflow-hidden">
         <div className="relative">
           <button
             onClick={onClose}
-            className="absolute top-2 sm:top-4 right-2 sm:right-4 z-10 bg-black/60 hover:bg-black/80 active:bg-black text-white p-2 sm:p-2.5 rounded-full transition touch-manipulation"
+            className="absolute top-3 sm:top-5 right-3 sm:right-5 z-20 bg-black/70 hover:bg-black/90 active:bg-black text-white p-2.5 sm:p-3 rounded-full transition-all duration-200 backdrop-blur-sm shadow-lg hover:scale-110 touch-manipulation"
             aria-label="Close video"
           >
-            <X className="w-6 h-6 sm:w-6 sm:h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
           </button>
 
-          <div className="relative">
+          <div className="relative bg-black">
             <VideoPlayer
               videoUrl={videoUrl}
               posterUrl={video.thumbnail_url}
@@ -69,21 +69,26 @@ export function VideoModal({ isOpen, video, onClose, hasAccess, onPurchase }: Vi
             )}
           </div>
 
-          <div className="p-4 sm:p-6 md:p-8">
-            <div className="flex items-start justify-between mb-3 sm:mb-4">
+          <div className="bg-gradient-to-b from-gray-900 to-black p-5 sm:p-8 md:p-10">
+            <div className="flex items-start justify-between mb-4 sm:mb-5">
               <div className="flex-1">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2" style={{ color: '#033a66' }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-white leading-tight">
                   {video.title}
                 </h2>
-                <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
-                  <span>{video.duration_minutes} minutes</span>
+                <div className="flex items-center gap-3 text-sm sm:text-base">
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-lg backdrop-blur-sm">
+                    <Play className="w-4 h-4 text-white/80" />
+                    <span className="text-white/90 font-medium">{video.duration_minutes} minutes</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-base mb-4">
-              {video.description}
-            </p>
+            <div className="border-t border-white/10 pt-5">
+              <p className="text-white/80 leading-relaxed text-sm sm:text-base md:text-lg">
+                {video.description}
+              </p>
+            </div>
           </div>
         </div>
       </div>
