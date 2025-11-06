@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TaxVideo } from '../data/taxVideos';
 import { taxCategories } from './TaxCategories';
+import { VideoRow } from './VideoRow';
+import { VideoModal } from './VideoModal';
+import { Video } from '../lib/supabase';
 
 interface CategoryVideosProps {
   categoryId: number;
@@ -9,9 +12,27 @@ interface CategoryVideosProps {
 }
 
 export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosProps) {
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const category = taxCategories.find(c => c.id === categoryId);
 
   if (!category) return null;
+
+  const convertToVideo = (taxVideo: TaxVideo): Video => ({
+    ...taxVideo,
+    category_id: undefined,
+  });
+
+  const handleVideoClick = (video: Video) => {
+    setSelectedVideo(video);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedVideo(null);
+  };
+
+  const hasAccess = () => true;
+
+  const handlePurchase = () => {};
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-black">
@@ -44,42 +65,20 @@ export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosPro
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {videos.map((video) => (
-            <div
-              key={video.id}
-              className="group cursor-pointer bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105"
-            >
-              <div className="relative aspect-video bg-gray-800">
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                <div className="absolute bottom-2 right-2 bg-black/80 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-medium">
-                  {video.duration}
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-semibold text-base mb-2 line-clamp-2">
-                  {video.title}
-                </h3>
-                <p className="text-white/60 text-sm line-clamp-2">
-                  {video.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <VideoRow
+          videos={videos.map(convertToVideo)}
+          hasAccess={hasAccess}
+          onClick={handleVideoClick}
+        />
       </div>
+
+      <VideoModal
+        isOpen={selectedVideo !== null}
+        video={selectedVideo}
+        onClose={handleCloseModal}
+        hasAccess={true}
+        onPurchase={handlePurchase}
+      />
     </div>
   );
 }
