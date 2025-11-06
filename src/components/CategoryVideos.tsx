@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TaxVideo } from '../data/taxVideos';
 import { taxCategories } from './TaxCategories';
-import { VideoRow } from './VideoRow';
+import { VideoCard } from './VideoCard';
 import { VideoModal } from './VideoModal';
 import { Video } from '../lib/supabase';
 
@@ -84,11 +84,17 @@ export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosPro
       </div>
 
       <div className="px-4 sm:px-6 md:px-8 py-8">
-        <VideoRow
-          videos={videos.map(convertToVideo)}
-          hasAccess={hasAccess}
-          onClick={handleVideoClick}
-        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          {videos.map((video) => (
+            <div key={video.id}>
+              <VideoCard
+                video={convertToVideo(video)}
+                hasAccess={true}
+                onClick={handleVideoClick}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       <VideoModal
