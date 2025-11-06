@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export function Hero() {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const timeString = time.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  });
-
   return (
-    <div className="pt-16 sm:pt-20 pb-8 sm:pb-12 px-6 text-center">
-      <div className="text-7xl sm:text-8xl md:text-9xl font-light text-white mb-4 tracking-tight" style={{ fontFeatureSettings: '"tnum"' }}>
-        {timeString}
+    <div className="relative w-full overflow-hidden bg-black" style={{ height: '40vh', minHeight: '300px' }}>
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        poster="/hero-page.png"
+      >
+        <source src="https://esg-talent.com/jenn/sample_tax1.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40" />
+
+      <div className="relative h-full flex items-center justify-center px-4 sm:px-6">
+        <div className="text-center max-w-4xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+            Your Gateway to Tax Knowledge
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed">
+            Everything you need to know
+          </p>
+        </div>
       </div>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-2 tracking-tight">
-        Tax Information
-      </h1>
-      <p className="text-base sm:text-lg text-white/70 font-normal">
-        Everything you need to know
-      </p>
     </div>
   );
 }
