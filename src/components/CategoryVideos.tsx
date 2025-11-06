@@ -36,10 +36,18 @@ export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosPro
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-black">
-      <div className="px-4 sm:px-6 md:px-8 py-8">
+      <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, ${category.color}15 0%, ${category.color}30 100%)`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black" />
+
         <button
           onClick={onBack}
-          className="text-white/70 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium mb-6"
+          className="absolute top-6 left-4 sm:left-8 z-10 text-white/70 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -47,24 +55,28 @@ export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosPro
           Back
         </button>
 
-        <div className="flex items-center gap-4 mb-8">
-          <div
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-lg flex-shrink-0"
-            style={{ backgroundColor: category.color }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent opacity-80" />
-            <span className="text-3xl sm:text-4xl relative z-10 filter drop-shadow-sm">
-              {category.icon}
-            </span>
-          </div>
-          <div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-              {category.name}
-            </h1>
-            <p className="text-white/60 mt-1">{videos.length} videos available</p>
+        <div className="relative h-full flex items-center px-4 sm:px-8 py-8">
+          <div className="flex items-center gap-6">
+            <div
+              className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl flex items-center justify-center relative overflow-hidden shadow-2xl flex-shrink-0"
+              style={{ backgroundColor: category.color }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent opacity-80" />
+              <span className="text-5xl sm:text-6xl relative z-10 filter drop-shadow-lg">
+                {category.icon}
+              </span>
+            </div>
+            <div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-2">
+                {category.name}
+              </h1>
+              <p className="text-white/80 text-base sm:text-lg">{videos.length} videos available</p>
+            </div>
           </div>
         </div>
+      </div>
 
+      <div className="px-4 sm:px-6 md:px-8 py-8">
         <VideoRow
           videos={videos.map(convertToVideo)}
           hasAccess={hasAccess}
