@@ -1,18 +1,18 @@
 import React from 'react';
 
 export const taxCategories = [
-  { id: 1, name: 'Income Tax', icon: '💰', color: '#34C759' },
-  { id: 2, name: 'GST', icon: '🧾', color: '#007AFF' },
-  { id: 3, name: 'Property Tax', icon: '🏠', color: '#FF9500' },
-  { id: 4, name: 'Motor Vehicle Tax', icon: '🚗', color: '#FF2D55' },
-  { id: 5, name: 'Customs & Excise Duties', icon: '📦', color: '#5856D6' },
-  { id: 6, name: 'Foreign Worker Levy', icon: '👷', color: '#AF52DE' },
-  { id: 7, name: 'CPF Contributions', icon: '💼', color: '#00C7BE' },
-  { id: 8, name: 'Stamp Duty', icon: '📝', color: '#32ADE6' },
-  { id: 9, name: 'Environmental & Carbon Taxes', icon: '🌱', color: '#30B0C7' },
-  { id: 10, name: 'Betting & Gambling Taxes', icon: '🎰', color: '#FF453A' },
-  { id: 11, name: 'Tobacco & Alcohol Taxes', icon: '🚬', color: '#FFD60A' },
-  { id: 12, name: 'Business & Corporate Taxes', icon: '🏢', color: '#64D2FF' }
+  { id: 1, name: 'Income Tax', icon: '💰', color: '#34C759', bgImage: 'https://images.pexels.com/photos/6863332/pexels-photo-6863332.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 2, name: 'GST', icon: '🧾', color: '#007AFF', bgImage: 'https://images.pexels.com/photos/6863515/pexels-photo-6863515.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 3, name: 'Property Tax', icon: '🏠', color: '#FF9500', bgImage: 'https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 4, name: 'Motor Vehicle Tax', icon: '🚗', color: '#FF2D55', bgImage: 'https://images.pexels.com/photos/3764984/pexels-photo-3764984.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 5, name: 'Customs & Excise Duties', icon: '📦', color: '#5856D6', bgImage: 'https://images.pexels.com/photos/4481258/pexels-photo-4481258.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 6, name: 'Foreign Worker Levy', icon: '👷', color: '#AF52DE', bgImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 7, name: 'CPF Contributions', icon: '💼', color: '#00C7BE', bgImage: 'https://images.pexels.com/photos/6863515/pexels-photo-6863515.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 8, name: 'Stamp Duty', icon: '📝', color: '#32ADE6', bgImage: 'https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 9, name: 'Environmental & Carbon Taxes', icon: '🌱', color: '#30B0C7', bgImage: 'https://images.pexels.com/photos/2990644/pexels-photo-2990644.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 10, name: 'Betting & Gambling Taxes', icon: '🎰', color: '#FF453A', bgImage: 'https://images.pexels.com/photos/3829227/pexels-photo-3829227.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 11, name: 'Tobacco & Alcohol Taxes', icon: '🚬', color: '#FFD60A', bgImage: 'https://images.pexels.com/photos/5926207/pexels-photo-5926207.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+  { id: 12, name: 'Business & Corporate Taxes', icon: '🏢', color: '#64D2FF', bgImage: 'https://images.pexels.com/photos/6863515/pexels-photo-6863515.jpeg?auto=compress&cs=tinysrgb&w=1920' }
 ];
 
 interface TaxCategoriesProps {

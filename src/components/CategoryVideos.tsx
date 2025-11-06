@@ -37,13 +37,20 @@ export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosPro
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-black">
       <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={category.bgImage}
+            alt={category.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(135deg, ${category.color}15 0%, ${category.color}30 100%)`,
+            background: `linear-gradient(135deg, ${category.color}40 0%, ${category.color}20 100%)`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black" />
 
         <button
           onClick={onBack}
