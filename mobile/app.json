@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Tax Talk Pro",
+    "slug": "tax-talk-pro",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#033a66"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.taxtalkpro.app"
+    },
+    "android": {
+      "package": "com.taxtalkpro.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#033a66"
+      },
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "ACCESS_WIFI_STATE"
+      ],
+      "usesCleartextTraffic": false
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": []
+  }
+}
