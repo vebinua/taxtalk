@@ -134,18 +134,21 @@ export function Navbar({ onSearch, onAuthClick, onSubscribeClick, onAccountClick
           </h1>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2">
           <button
             onClick={onSubscribeClick || onAuthClick}
-            className="px-3 py-1.5 rounded-md font-medium text-xs transition hover:opacity-90 text-white"
-            style={{ background: 'linear-gradient(135deg, #827546 0%, #a08f5a 100%)' }}
+            className="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 text-white shadow-lg active:scale-95"
+            style={{
+              background: '#007AFF',
+              boxShadow: '0 4px 12px rgba(0, 122, 255, 0.3)'
+            }}
           >
             Subscribe
           </button>
 
           <button
             onClick={onAuthClick}
-            className="px-3 py-1.5 rounded-md font-medium text-xs transition hover:bg-white/10 border border-white/30 text-white"
+            className="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 active:scale-95 shadow-lg"
           >
             Sign In
           </button>
