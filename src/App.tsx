@@ -5,6 +5,8 @@ import { CategoryVideos } from './components/CategoryVideos';
 import { AuthModal } from './components/AuthModal';
 import { SubscriptionModal } from './components/SubscriptionModal';
 import { AccountManagement } from './components/AccountManagement';
+import { LearningStats } from './components/LearningStats';
+import { ContinueWatchingRow } from './components/ContinueWatchingRow';
 import { Navbar } from './components/Navbar';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { taxVideos } from './data/taxVideos';
@@ -23,6 +25,41 @@ function AppContent() {
   const handleBack = () => {
     setSelectedCategoryId(null);
   };
+
+  const getMockStats = () => {
+    if (!profile) return { weeklyMinutes: 0, weeklyChange: 0, completedVideos: 0, weeklyCompleted: 0, hasPurchases: false };
+    
+    if (profile.subscription_status === 'active') {
+      return { weeklyMinutes: 145, weeklyChange: 23, completedVideos: 12, weeklyCompleted: 3, hasPurchases: false };
+    } else if (user?.email === 'payper@taxtalkpro.com') {
+      return { weeklyMinutes: 85, weeklyChange: 15, completedVideos: 5, weeklyCompleted: 2, hasPurchases: true };
+    } else {
+      return { weeklyMinutes: 0, weeklyChange: 0, completedVideos: 0, weeklyCompleted: 0, hasPurchases: false };
+    }
+  };
+
+  const getContinueWatchingVideos = () => {
+    if (!profile) return [];
+    
+    if (profile.subscription_status === 'active') {
+      return taxVideos.slice(0, 4);
+    } else if (user?.email === 'payper@taxtalkpro.com') {
+      return taxVideos.slice(0, 3);
+    }
+    return [];
+  };
+
+  const hasAccess = (videoId: string) => {
+    if (!profile) return false;
+    return profile.subscription_status === 'active' || user?.email === 'payper@taxtalkpro.com';
+  };
+
+  const mockWatchProgress = new Map([
+    [taxVideos[0]?.id, { progress_seconds: 450, duration_seconds: 900 }],
+    [taxVideos[1]?.id, { progress_seconds: 200, duration_seconds: 800 }],
+    [taxVideos[2]?.id, { progress_seconds: 350, duration_seconds: 700 }],
+    [taxVideos[3]?.id, { progress_seconds: 100, duration_seconds: 600 }],
+  ]);
 
   if (selectedCategoryId !== null) {
     const categoryVideos = taxVideos.filter(v => v.categoryId === selectedCategoryId);
@@ -53,6 +90,9 @@ function AppContent() {
     );
   }
 
+  const stats = getMockStats();
+  const continueWatchingVideos = getContinueWatchingVideos();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-black">
       <Navbar
@@ -61,13 +101,52 @@ function AppContent() {
         onSubscribeClick={() => setShowSubscriptionModal(true)}
         onAccountClick={() => setShowAccountModal(true)}
       />
+      
       {!user && (
         <Hero
           onAuthClick={() => setShowAuthModal(true)}
           onSubscribeClick={() => setShowSubscriptionModal(true)}
         />
       )}
-      <div className={user ? 'pt-20' : ''}>
+
+      {user && (
+        <div className="pt-24 pb-8">
+          <div className="px-4 sm:px-6 md:px-8 mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+              Welcome back, {profile?.full_name || 'User'}
+            </h1>
+            <p className="text-white/60 text-lg">
+              Continue your tax learning journey
+            </p>
+          </div>
+
+          <LearningStats
+            weeklyMinutes={stats.weeklyMinutes}
+            weeklyChange={stats.weeklyChange}
+            completedVideos={stats.completedVideos}
+            weeklyCompleted={stats.weeklyCompleted}
+            subscriptionStatus={profile?.subscription_status || 'free'}
+            onUpgrade={() => setShowSubscriptionModal(true)}
+            hasPurchases={stats.hasPurchases}
+          />
+
+          {continueWatchingVideos.length > 0 && (
+            <div className="mb-10 px-4 sm:px-6 md:px-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight">
+                Continue Watching
+              </h2>
+              <ContinueWatchingRow
+                videos={continueWatchingVideos}
+                watchProgress={mockWatchProgress}
+                hasAccess={hasAccess}
+                onClick={(video) => console.log('Play video:', video.title)}
+              />
+            </div>
+          )}
+        </div>
+      )}
+      
+      <div className={user ? '' : ''}>
         <TaxCategories onCategoryClick={handleCategoryClick} />
       </div>
 
