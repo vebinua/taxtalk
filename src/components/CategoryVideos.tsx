@@ -4,6 +4,7 @@ import { taxCategories } from './TaxCategories';
 import { VideoCard } from './VideoCard';
 import { VideoModal } from './VideoModal';
 import { Video } from '../lib/supabase';
+import { useAuth } from '../contexts/AuthContext';
 
 interface CategoryVideosProps {
   categoryId: number;
@@ -14,6 +15,7 @@ interface CategoryVideosProps {
 }
 
 export function CategoryVideos({ categoryId, videos, onBack, onAuthClick, onSubscribeClick }: CategoryVideosProps) {
+  const { user, profile } = useAuth();
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const category = taxCategories.find(c => c.id === categoryId);
 
@@ -32,9 +34,20 @@ export function CategoryVideos({ categoryId, videos, onBack, onAuthClick, onSubs
     setSelectedVideo(null);
   };
 
-  const hasAccess = () => true;
+  const hasAccess = (video: Video) => {
+    if (!user) return false;
+    if (profile?.subscription_status === 'active') return true;
+    if (user?.email === 'payper@taxtalkpro.com') return true;
+    return false;
+  };
 
-  const handlePurchase = () => {};
+  const handlePurchase = () => {
+    if (!user) {
+      onAuthClick?.();
+    } else if (profile?.subscription_status !== 'active') {
+      onSubscribeClick?.();
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-black">
@@ -64,21 +77,23 @@ export function CategoryVideos({ categoryId, videos, onBack, onAuthClick, onSubs
           Back
         </button>
 
-        <div className="absolute top-6 right-4 sm:right-8 flex items-center space-x-2 z-10">
-          <button
-            onClick={onSubscribeClick || onAuthClick}
-            className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:opacity-90 text-white shadow-sm"
-            style={{ background: 'linear-gradient(135deg, #827546 0%, #a08f5a 100%)' }}
-          >
-            Subscribe
-          </button>
-          <button
-            onClick={onAuthClick}
-            className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:bg-white/10 border border-white/40 text-white backdrop-blur-sm shadow-sm"
-          >
-            Sign In
-          </button>
-        </div>
+        {!user && (
+          <div className="absolute top-6 right-4 sm:right-8 flex items-center space-x-2 z-10">
+            <button
+              onClick={onSubscribeClick || onAuthClick}
+              className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:opacity-90 text-white shadow-sm"
+              style={{ background: 'linear-gradient(135deg, #827546 0%, #a08f5a 100%)' }}
+            >
+              Subscribe
+            </button>
+            <button
+              onClick={onAuthClick}
+              className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:bg-white/10 border border-white/40 text-white backdrop-blur-sm shadow-sm"
+            >
+              Sign In
+            </button>
+          </div>
+        )}
 
         <div className="relative h-full flex items-center px-4 sm:px-8 py-8">
           <div className="flex items-center gap-6">
@@ -103,15 +118,18 @@ export function CategoryVideos({ categoryId, videos, onBack, onAuthClick, onSubs
 
       <div className="px-4 sm:px-6 md:px-8 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {videos.map((video) => (
-            <div key={video.id}>
-              <VideoCard
-                video={convertToVideo(video)}
-                hasAccess={true}
-                onClick={handleVideoClick}
-              />
-            </div>
-          ))}
+          {videos.map((video) => {
+            const convertedVideo = convertToVideo(video);
+            return (
+              <div key={video.id}>
+                <VideoCard
+                  video={convertedVideo}
+                  hasAccess={hasAccess(convertedVideo)}
+                  onClick={handleVideoClick}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -119,7 +137,7 @@ export function CategoryVideos({ categoryId, videos, onBack, onAuthClick, onSubs
         isOpen={selectedVideo !== null}
         video={selectedVideo}
         onClose={handleCloseModal}
-        hasAccess={true}
+        hasAccess={selectedVideo ? hasAccess(selectedVideo) : false}
         onPurchase={handlePurchase}
       />
     </div>
