@@ -4,6 +4,7 @@ import { TaxCategories } from './components/TaxCategories';
 import { CategoryVideos } from './components/CategoryVideos';
 import { AuthModal } from './components/AuthModal';
 import { SubscriptionModal } from './components/SubscriptionModal';
+import { AccountManagement } from './components/AccountManagement';
 import { Navbar } from './components/Navbar';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { taxVideos } from './data/taxVideos';
@@ -12,6 +13,7 @@ function AppContent() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
+  const [showAccountModal, setShowAccountModal] = useState(false);
   const { user, profile } = useAuth();
 
   const handleCategoryClick = (categoryId: number) => {
@@ -57,7 +59,7 @@ function AppContent() {
         onSearch={(query) => console.log('Search:', query)}
         onAuthClick={() => setShowAuthModal(true)}
         onSubscribeClick={() => setShowSubscriptionModal(true)}
-        onAccountClick={() => console.log('Account clicked')}
+        onAccountClick={() => setShowAccountModal(true)}
       />
       {!user && (
         <Hero
@@ -81,6 +83,11 @@ function AppContent() {
           console.log('Subscribed to:', plan);
           setShowSubscriptionModal(false);
         }}
+      />
+
+      <AccountManagement
+        isOpen={showAccountModal}
+        onClose={() => setShowAccountModal(false)}
       />
     </div>
   );
