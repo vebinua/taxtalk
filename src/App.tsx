@@ -110,12 +110,12 @@ function AppContent() {
       )}
 
       {user && (
-        <div className="pt-24 pb-8">
-          <div className="px-4 sm:px-6 md:px-8 mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+        <div className="pt-24 pb-10">
+          <div className="px-4 sm:px-6 md:px-8 mb-10">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-3 tracking-tight">
               Welcome back, {profile?.full_name || 'User'}
             </h1>
-            <p className="text-white/60 text-lg">
+            <p className="text-white/50 text-lg">
               Continue your tax learning journey
             </p>
           </div>
@@ -131,7 +131,7 @@ function AppContent() {
           />
 
           {continueWatchingVideos.length > 0 && (
-            <div className="mb-10 px-4 sm:px-6 md:px-8">
+            <div className="mb-12 px-4 sm:px-6 md:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight">
                 Continue Watching
               </h2>
@@ -146,9 +146,7 @@ function AppContent() {
         </div>
       )}
       
-      <div className={user ? '' : ''}>
-        <TaxCategories onCategoryClick={handleCategoryClick} />
-      </div>
+      <TaxCategories onCategoryClick={handleCategoryClick} />
 
       <AuthModal
         isOpen={showAuthModal}
