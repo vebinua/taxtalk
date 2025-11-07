@@ -32,13 +32,19 @@ function AppContent() {
           onSubscribeClick={() => setShowSubscriptionModal(true)}
         />
 
-        {showAuthModal && (
-          <AuthModal onClose={() => setShowAuthModal(false)} />
-        )}
+        <AuthModal
+          isOpen={showAuthModal}
+          onClose={() => setShowAuthModal(false)}
+        />
 
-        {showSubscriptionModal && (
-          <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} />
-        )}
+        <SubscriptionModal
+          isOpen={showSubscriptionModal}
+          onClose={() => setShowSubscriptionModal(false)}
+          onSubscribe={(plan) => {
+            console.log('Subscribed to:', plan);
+            setShowSubscriptionModal(false);
+          }}
+        />
       </>
     );
   }
@@ -51,13 +57,19 @@ function AppContent() {
       />
       <TaxCategories onCategoryClick={handleCategoryClick} />
 
-      {showAuthModal && (
-        <AuthModal onClose={() => setShowAuthModal(false)} />
-      )}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
 
-      {showSubscriptionModal && (
-        <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} />
-      )}
+      <SubscriptionModal
+        isOpen={showSubscriptionModal}
+        onClose={() => setShowSubscriptionModal(false)}
+        onSubscribe={(plan) => {
+          console.log('Subscribed to:', plan);
+          setShowSubscriptionModal(false);
+        }}
+      />
     </div>
   );
 }
