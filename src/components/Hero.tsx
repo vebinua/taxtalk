@@ -20,17 +20,17 @@ export function Hero({ onAuthClick, onSubscribeClick }: HeroProps) {
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40" />
 
-      <div className="absolute top-4 right-4 flex items-center space-x-3 z-10">
+      <div className="absolute top-4 right-4 flex items-center space-x-2 z-10">
         <button
           onClick={onSubscribeClick || onAuthClick}
-          className="px-6 py-2.5 rounded-md font-medium text-sm transition hover:opacity-90 text-white"
+          className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:opacity-90 text-white shadow-sm"
           style={{ background: 'linear-gradient(135deg, #827546 0%, #a08f5a 100%)' }}
         >
           Subscribe
         </button>
         <button
           onClick={onAuthClick}
-          className="px-6 py-2.5 rounded-md font-medium text-sm transition hover:bg-white/10 border border-white/30 text-white"
+          className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:bg-white/10 border border-white/40 text-white backdrop-blur-sm shadow-sm"
         >
           Sign In
         </button>
