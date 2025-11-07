@@ -191,6 +191,22 @@ export function AuthModal({ isOpen, onClose, onAuthSuccess, onSubscribeClick }: 
             </button>
           </form>
 
+          {!isSignUp && (
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="bg-gray-50 rounded-2xl p-4">
+                <p className="text-xs font-semibold text-gray-700 mb-2">Demo Account:</p>
+                <div className="space-y-1">
+                  <p className="text-xs text-gray-600 font-mono">
+                    subscriber@taxtalkpro.com
+                  </p>
+                  <p className="text-xs text-gray-600 font-mono">
+                    password123
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="mt-6 text-center">
             <button
               onClick={() => {
