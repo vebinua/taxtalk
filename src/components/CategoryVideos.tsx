@@ -9,9 +9,11 @@ interface CategoryVideosProps {
   categoryId: number;
   videos: TaxVideo[];
   onBack: () => void;
+  onAuthClick?: () => void;
+  onSubscribeClick?: () => void;
 }
 
-export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosProps) {
+export function CategoryVideos({ categoryId, videos, onBack, onAuthClick, onSubscribeClick }: CategoryVideosProps) {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const category = taxCategories.find(c => c.id === categoryId);
 
@@ -61,6 +63,22 @@ export function CategoryVideos({ categoryId, videos, onBack }: CategoryVideosPro
           </svg>
           Back
         </button>
+
+        <div className="absolute top-6 right-4 sm:right-8 flex items-center space-x-2 z-10">
+          <button
+            onClick={onSubscribeClick || onAuthClick}
+            className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:opacity-90 text-white shadow-sm"
+            style={{ background: 'linear-gradient(135deg, #827546 0%, #a08f5a 100%)' }}
+          >
+            Subscribe
+          </button>
+          <button
+            onClick={onAuthClick}
+            className="px-4 py-1.5 rounded-full font-medium text-xs transition hover:bg-white/10 border border-white/40 text-white backdrop-blur-sm shadow-sm"
+          >
+            Sign In
+          </button>
+        </div>
 
         <div className="relative h-full flex items-center px-4 sm:px-8 py-8">
           <div className="flex items-center gap-6">

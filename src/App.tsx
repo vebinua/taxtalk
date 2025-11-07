@@ -23,11 +23,23 @@ function AppContent() {
   if (selectedCategoryId !== null) {
     const categoryVideos = taxVideos.filter(v => v.categoryId === selectedCategoryId);
     return (
-      <CategoryVideos
-        categoryId={selectedCategoryId}
-        videos={categoryVideos}
-        onBack={handleBack}
-      />
+      <>
+        <CategoryVideos
+          categoryId={selectedCategoryId}
+          videos={categoryVideos}
+          onBack={handleBack}
+          onAuthClick={() => setShowAuthModal(true)}
+          onSubscribeClick={() => setShowSubscriptionModal(true)}
+        />
+
+        {showAuthModal && (
+          <AuthModal onClose={() => setShowAuthModal(false)} />
+        )}
+
+        {showSubscriptionModal && (
+          <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} />
+        )}
+      </>
     );
   }
 
