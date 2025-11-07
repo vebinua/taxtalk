@@ -118,29 +118,25 @@ export function Navbar({ onSearch, onAuthClick, onSubscribeClick, onAccountClick
     );
   }
 
-  // Modern clean navbar for guests
+  // iOS-style navbar for guests
   return (
-    <nav
-      className="fixed top-0 w-full z-50 px-6 md:px-12 py-4 transition-transform duration-300"
-      style={{
-        background: 'transparent',
-        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)'
-      }}
+    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200 transition-transform duration-300"
+      style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
     >
-      <div className="flex items-center justify-between max-w-[1800px] mx-auto">
+      <div className="flex items-center justify-between px-4 py-3 max-w-[1800px] mx-auto">
         <div className="flex items-center">
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white">
-            Tax Talk Pro
+          <h1 className="text-lg md:text-xl font-bold text-gray-900">
+            Tax Talk <span style={{ color: '#827546' }}>Pro</span>
           </h1>
         </div>
 
         <div className="flex items-center space-x-2">
           <button
             onClick={onSubscribeClick || onAuthClick}
-            className="px-3 py-1.5 rounded-full font-semibold text-xs transition-all duration-200 text-white shadow-md active:scale-95"
+            className="px-3 py-1.5 rounded-full font-semibold text-xs transition-all duration-200 text-white shadow-sm active:scale-95"
             style={{
               background: '#827546',
-              boxShadow: '0 2px 8px rgba(130, 117, 70, 0.3)'
+              boxShadow: '0 2px 6px rgba(130, 117, 70, 0.2)'
             }}
           >
             Subscribe
@@ -148,7 +144,7 @@ export function Navbar({ onSearch, onAuthClick, onSubscribeClick, onAccountClick
 
           <button
             onClick={onAuthClick}
-            className="px-3 py-1.5 rounded-full font-semibold text-xs transition-all duration-200 bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 active:scale-95 shadow-md"
+            className="px-3 py-1.5 rounded-full font-semibold text-xs transition-all duration-200 bg-gray-100 text-gray-900 hover:bg-gray-200 active:scale-95"
           >
             Sign In
           </button>

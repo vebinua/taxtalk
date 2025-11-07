@@ -21,8 +21,9 @@ interface TaxCategoriesProps {
 
 export function TaxCategories({ onCategoryClick }: TaxCategoriesProps) {
   return (
-    <div className="px-6 sm:px-8 py-8 pb-20 max-w-7xl mx-auto">
-      <div className="grid grid-cols-4 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6">
+    <div className="px-4 sm:px-6 md:px-8 py-6 pb-16 max-w-7xl mx-auto">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 px-2">Browse Topics</h2>
+      <div className="grid grid-cols-4 gap-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6">
         {taxCategories.map((category) => (
           <button
             key={category.id}
@@ -31,15 +32,14 @@ export function TaxCategories({ onCategoryClick }: TaxCategoriesProps) {
             style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             <div
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-transform duration-200 active:scale-90 relative overflow-hidden shadow-lg"
+              className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm border border-gray-100"
               style={{ backgroundColor: category.color }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent opacity-80" />
-              <span className="text-3xl sm:text-4xl relative z-10 filter drop-shadow-sm">
+              <span className="text-2xl sm:text-3xl filter drop-shadow-sm">
                 {category.icon}
               </span>
             </div>
-            <span className="text-white text-xs sm:text-sm font-medium text-center leading-tight max-w-[80px] sm:max-w-[90px]">
+            <span className="text-gray-700 text-xs sm:text-sm font-medium text-center leading-tight max-w-[75px] sm:max-w-[85px]">
               {category.name}
             </span>
           </button>
