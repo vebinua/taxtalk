@@ -4,15 +4,13 @@ import { TaxCategories } from './components/TaxCategories';
 import { CategoryVideos } from './components/CategoryVideos';
 import { AuthModal } from './components/AuthModal';
 import { SubscriptionModal } from './components/SubscriptionModal';
-import { Navbar } from './components/Navbar';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { taxVideos } from './data/taxVideos';
 
 function AppContent() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
-  const { user, profile } = useAuth();
 
   const handleCategoryClick = (categoryId: number) => {
     setSelectedCategoryId(categoryId);
@@ -53,21 +51,11 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-black">
-      <Navbar
-        onSearch={(query) => console.log('Search:', query)}
+      <Hero
         onAuthClick={() => setShowAuthModal(true)}
         onSubscribeClick={() => setShowSubscriptionModal(true)}
-        onAccountClick={() => console.log('Account clicked')}
       />
-      {!user && (
-        <Hero
-          onAuthClick={() => setShowAuthModal(true)}
-          onSubscribeClick={() => setShowSubscriptionModal(true)}
-        />
-      )}
-      <div className={user ? 'pt-20' : ''}>
-        <TaxCategories onCategoryClick={handleCategoryClick} />
-      </div>
+      <TaxCategories onCategoryClick={handleCategoryClick} />
 
       <AuthModal
         isOpen={showAuthModal}
