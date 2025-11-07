@@ -116,202 +116,205 @@ export function AccountManagement({ isOpen, onClose }: AccountManagementProps) {
   if (!membershipData) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md overflow-y-auto">
-      <div className="bg-gradient-to-br from-gray-900 to-black rounded-3xl w-full max-w-4xl shadow-2xl my-auto max-h-[90vh] overflow-y-auto border border-white/10">
-        <div className="sticky top-0 bg-gradient-to-r from-gray-900 to-black border-b border-white/10 px-8 py-6 flex items-center justify-between z-10 backdrop-blur-xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-lg overflow-y-auto">
+      <div className="bg-gradient-to-br from-gray-900 via-gray-900 to-black rounded-3xl w-full max-w-5xl shadow-2xl my-auto max-h-[90vh] overflow-y-auto border border-white/10">
+        <div className="sticky top-0 bg-gradient-to-br from-gray-900/95 via-gray-900/95 to-black/95 backdrop-blur-xl border-b border-white/10 px-6 sm:px-10 py-8 flex items-center justify-between z-10">
           <div>
-            <h2 className="text-3xl font-bold text-white mb-1">Account Settings</h2>
-            <p className="text-gray-400 text-sm">Manage your profile and preferences</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 tracking-tight">Account Settings</h2>
+            <p className="text-gray-400 text-base">Manage your profile, subscription, and preferences</p>
           </div>
           <button
             onClick={onClose}
-            className="p-2.5 hover:bg-white/10 active:bg-white/20 rounded-xl transition touch-manipulation"
+            className="p-3 hover:bg-white/10 active:bg-white/20 rounded-2xl transition-all duration-200 touch-manipulation group"
             aria-label="Close"
           >
-            <X className="w-6 h-6 text-gray-300" />
+            <X className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
           </button>
         </div>
 
-        <div className="p-8 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/30">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-3 bg-blue-500/30 rounded-xl">
-                  <Clock className="w-6 h-6 text-blue-300" />
+        <div className="p-6 sm:p-10 space-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="bg-gradient-to-br from-blue-500/15 to-blue-600/10 backdrop-blur-sm rounded-3xl p-7 border border-blue-500/20 hover:border-blue-500/30 transition-all duration-300 group">
+              <div className="flex items-start justify-between mb-5">
+                <div className="p-4 bg-blue-500/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                  <Clock className="w-7 h-7 text-blue-400" />
                 </div>
               </div>
-              <p className="text-sm text-gray-400 mb-1">Watch Time</p>
-              <p className="text-3xl font-bold text-white">{watchStats.totalMinutes}<span className="text-lg text-gray-400 ml-1">min</span></p>
+              <p className="text-sm text-blue-300/70 font-medium uppercase tracking-wide mb-2">Total Watch Time</p>
+              <p className="text-4xl font-bold text-white">{watchStats.totalMinutes}<span className="text-xl text-gray-400 ml-2">min</span></p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 backdrop-blur-sm rounded-2xl p-6 border border-green-500/30">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-3 bg-green-500/30 rounded-xl">
-                  <Award className="w-6 h-6 text-green-300" />
+            <div className="bg-gradient-to-br from-green-500/15 to-green-600/10 backdrop-blur-sm rounded-3xl p-7 border border-green-500/20 hover:border-green-500/30 transition-all duration-300 group">
+              <div className="flex items-start justify-between mb-5">
+                <div className="p-4 bg-green-500/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                  <Award className="w-7 h-7 text-green-400" />
                 </div>
               </div>
-              <p className="text-sm text-gray-400 mb-1">Completed</p>
-              <p className="text-3xl font-bold text-white">{watchStats.completedVideos}<span className="text-lg text-gray-400 ml-1">videos</span></p>
+              <p className="text-sm text-green-300/70 font-medium uppercase tracking-wide mb-2">Videos Completed</p>
+              <p className="text-4xl font-bold text-white">{watchStats.completedVideos}<span className="text-xl text-gray-400 ml-2">videos</span></p>
             </div>
 
-            <div className="bg-gradient-to-br from-amber-500/20 to-amber-600/20 backdrop-blur-sm rounded-2xl p-6 border border-amber-500/30">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-3 bg-amber-500/30 rounded-xl">
-                  <CreditCard className="w-6 h-6 text-amber-300" />
+            <div className="bg-gradient-to-br from-amber-500/15 to-amber-600/10 backdrop-blur-sm rounded-3xl p-7 border border-amber-500/20 hover:border-amber-500/30 transition-all duration-300 group">
+              <div className="flex items-start justify-between mb-5">
+                <div className="p-4 bg-amber-500/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                  <CreditCard className="w-7 h-7 text-amber-400" />
                 </div>
               </div>
-              <p className="text-sm text-gray-400 mb-1">Purchases</p>
-              <p className="text-3xl font-bold text-white">{purchaseCount}<span className="text-lg text-gray-400 ml-1">videos</span></p>
+              <p className="text-sm text-amber-300/70 font-medium uppercase tracking-wide mb-2">Videos Purchased</p>
+              <p className="text-4xl font-bold text-white">{purchaseCount}<span className="text-xl text-gray-400 ml-2">videos</span></p>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-blue-500/20 rounded-xl">
-                <User className="w-6 h-6 text-blue-400" />
+          <div className="bg-gradient-to-br from-white/8 to-white/[0.03] backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="p-4 bg-blue-500/20 rounded-2xl">
+                <User className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white">Profile Information</h3>
+              <h3 className="text-2xl font-bold text-white">Profile Information</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
+                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
                   <Mail className="w-4 h-4" />
-                  <p>Email Address</p>
+                  <p className="font-medium uppercase tracking-wide">Email Address</p>
                 </div>
-                <p className="text-lg font-medium text-white">{membershipData.email}</p>
+                <p className="text-lg font-semibold text-white">{membershipData.email}</p>
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
+                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
                   <Calendar className="w-4 h-4" />
-                  <p>Member Since</p>
+                  <p className="font-medium uppercase tracking-wide">Member Since</p>
                 </div>
-                <p className="text-lg font-medium text-white">{membershipData.memberSince}</p>
+                <p className="text-lg font-semibold text-white">{membershipData.memberSince}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-emerald-500/20 rounded-xl">
-                <Shield className="w-6 h-6 text-emerald-400" />
+          <div className="bg-gradient-to-br from-white/8 to-white/[0.03] backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="p-4 bg-emerald-500/20 rounded-2xl">
+                <Shield className="w-7 h-7 text-emerald-400" />
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold text-white">Membership Status</h3>
+                <h3 className="text-2xl font-bold text-white">Membership Status</h3>
                 {profile?.subscription_status === 'active' && (
-                  <div className="flex items-center gap-2 mt-1">
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span className="text-sm text-emerald-400 font-medium">Active Subscription</span>
+                  <div className="flex items-center gap-2 mt-2">
+                    <Check className="w-5 h-5 text-emerald-400" />
+                    <span className="text-sm text-emerald-400 font-semibold uppercase tracking-wide">Active Subscription</span>
                   </div>
                 )}
               </div>
             </div>
-            <div className="space-y-4">
-              <div className="bg-white/5 rounded-xl p-4">
-                <p className="text-sm text-gray-400 mb-1">Plan Type</p>
-                <p className="text-lg font-semibold text-white">{membershipData.membershipType}</p>
+            <div className="space-y-5">
+              <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
+                <p className="text-sm text-gray-400 font-medium uppercase tracking-wide mb-3">Plan Type</p>
+                <p className="text-xl font-bold text-white">{membershipData.membershipType}</p>
               </div>
               {profile?.subscription_status === 'active' && (
-                <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <p className="text-sm text-gray-400 mb-1">Next Payment</p>
-                      <p className="text-base font-medium text-white">{membershipData.nextPayment}</p>
-                    </div>
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <p className="text-sm text-gray-400 mb-1">Amount</p>
-                      <p className="text-base font-medium text-white">{membershipData.paymentAmount}</p>
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
+                    <p className="text-sm text-gray-400 font-medium uppercase tracking-wide mb-3">Next Payment</p>
+                    <p className="text-lg font-semibold text-white">{membershipData.nextPayment}</p>
                   </div>
-                </>
+                  <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
+                    <p className="text-sm text-gray-400 font-medium uppercase tracking-wide mb-3">Amount</p>
+                    <p className="text-lg font-semibold text-white">{membershipData.paymentAmount}</p>
+                  </div>
+                </div>
               )}
             </div>
           </div>
 
           {profile?.subscription_status === 'active' && (
-            <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-green-500/20 rounded-xl">
-                  <CreditCard className="w-6 h-6 text-green-400" />
+            <div className="bg-gradient-to-br from-white/8 to-white/[0.03] backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-4 bg-green-500/20 rounded-2xl">
+                  <CreditCard className="w-7 h-7 text-green-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-white">Payment Method</h3>
+                <h3 className="text-2xl font-bold text-white">Payment Method</h3>
               </div>
-              <div className="bg-white/5 rounded-xl p-4">
-                <p className="text-sm text-gray-400 mb-1">Saved Card</p>
-                <p className="text-lg font-medium text-white">{membershipData.paymentMethod}</p>
+              <div className="bg-white/5 rounded-2xl p-5 border border-white/10">
+                <p className="text-sm text-gray-400 font-medium uppercase tracking-wide mb-3">Saved Card</p>
+                <p className="text-xl font-bold text-white">{membershipData.paymentMethod}</p>
               </div>
             </div>
           )}
 
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-red-500/20 rounded-xl">
-                <Lock className="w-6 h-6 text-red-400" />
+          <div className="bg-gradient-to-br from-white/8 to-white/[0.03] backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="p-4 bg-red-500/20 rounded-2xl">
+                <Lock className="w-7 h-7 text-red-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white">Security Settings</h3>
+              <h3 className="text-2xl font-bold text-white">Security Settings</h3>
             </div>
 
             {!showPasswordForm ? (
               <button
                 onClick={() => setShowPasswordForm(true)}
-                className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg shadow-red-500/20"
+                className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-2xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg shadow-red-500/30 hover:scale-105"
               >
                 Update Password
               </button>
             ) : (
-              <form onSubmit={handlePasswordUpdate} className="space-y-4">
+              <form onSubmit={handlePasswordUpdate} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
                     Current Password
                   </label>
                   <input
                     type="password"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                    className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                    placeholder="Enter current password"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
                     New Password
                   </label>
                   <input
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                    className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                    placeholder="Enter new password"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
                     Confirm New Password
                   </label>
                   <input
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                    className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                    placeholder="Confirm new password"
                     required
                   />
                 </div>
 
                 {passwordError && (
-                  <p className="text-sm text-red-400 bg-red-500/20 border border-red-500/30 px-4 py-3 rounded-xl">
-                    {passwordError}
-                  </p>
+                  <div className="flex items-start gap-3 text-sm text-red-400 bg-red-500/20 border border-red-500/40 px-5 py-4 rounded-2xl">
+                    <X className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <p className="font-medium">{passwordError}</p>
+                  </div>
                 )}
 
                 {passwordSuccess && (
-                  <p className="text-sm text-green-400 bg-green-500/20 border border-green-500/30 px-4 py-3 rounded-xl">
-                    {passwordSuccess}
-                  </p>
+                  <div className="flex items-start gap-3 text-sm text-green-400 bg-green-500/20 border border-green-500/40 px-5 py-4 rounded-2xl">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <p className="font-medium">{passwordSuccess}</p>
+                  </div>
                 )}
 
-                <div className="flex gap-3 pt-2">
+                <div className="flex gap-4 pt-3">
                   <button
                     type="submit"
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg shadow-red-500/20"
+                    className="flex-1 px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-2xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg shadow-red-500/30 hover:scale-105"
                   >
                     Update Password
                   </button>
@@ -325,7 +328,7 @@ export function AccountManagement({ isOpen, onClose }: AccountManagementProps) {
                       setNewPassword('');
                       setConfirmPassword('');
                     }}
-                    className="px-6 py-3 bg-white/10 text-gray-300 font-medium rounded-xl hover:bg-white/20 transition"
+                    className="px-8 py-4 bg-white/10 text-gray-300 font-bold rounded-2xl hover:bg-white/20 transition-all border border-white/20"
                   >
                     Cancel
                   </button>
