@@ -99,131 +99,92 @@ export function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-2 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-lg max-w-2xl w-full p-4 sm:p-6 md:p-8 relative my-auto">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 overflow-y-auto animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-3xl max-w-md w-full relative my-auto shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 active:text-gray-900 p-1 touch-manipulation"
+          className="absolute top-5 right-5 text-gray-400 hover:text-gray-600 p-1.5 hover:bg-gray-100 rounded-full transition-all touch-manipulation z-10"
           aria-label="Close"
         >
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5" />
         </button>
 
-        <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#033a66' }}>
-          {isSignUp ? 'Create Account' : 'Sign In'}
-        </h2>
-        <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-          Access Tax Talk Pro training platform
-        </p>
-
-        {showDemoAccounts && !isSignUp && (
-          <div className="mb-6 sm:mb-8">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-800">Demo Accounts</h3>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={handleInitializeDemoUsers}
-                  disabled={initializingDemo}
-                  className="flex items-center space-x-1 text-sm px-3 py-1 rounded transition disabled:opacity-50"
-                  style={{ backgroundColor: '#827546', color: 'white' }}
-                >
-                  <Wand2 className="w-4 h-4" />
-                  <span>{initializingDemo ? 'Creating...' : 'Create Demo Users'}</span>
-                </button>
-                <button
-                  onClick={() => setShowDemoAccounts(false)}
-                  className="text-sm text-gray-500 hover:text-gray-700"
-                >
-                  Hide
-                </button>
-              </div>
-            </div>
-            <div className="space-y-3 p-3 sm:p-4 bg-gray-50 rounded-lg">
-              {demoAccounts.map((account) => (
-                <div key={account.email} className="text-xs sm:text-sm">
-                  <p className="font-semibold text-gray-800">{account.name}</p>
-                  <p className="text-gray-600">{account.description}</p>
-                  <p className="text-gray-700 font-mono mt-1 text-xs">
-                    {account.email} / {account.password}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-              <p className="text-sm text-blue-800">
-                Use the credentials above in the sign in form below to test different access levels.
-              </p>
-            </div>
+        <div className="px-8 pt-12 pb-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-2 text-gray-900">
+              {isSignUp ? 'Create Account' : 'Welcome Back'}
+            </h2>
+            <p className="text-gray-500 text-sm">
+              {isSignUp ? 'Join Tax Talk Pro today' : 'Sign in to continue learning'}
+            </p>
           </div>
-        )}
-
-        {!showDemoAccounts && !isSignUp && (
-          <button
-            onClick={() => setShowDemoAccounts(true)}
-            className="mb-4 text-sm hover:underline"
-            style={{ color: '#827546' }}
-          >
-            Show Demo Accounts
-          </button>
-        )}
-
-        <div className="border-t pt-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
-            {isSignUp ? 'Create Your Account' : 'Sign In With Your Account'}
-          </h3>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignUp && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Full Name
                 </label>
                 <input
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 text-gray-900 bg-white"
+                  className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 transition-all"
+                  placeholder="Enter your name"
                   required
                 />
               </div>
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Email
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 text-gray-900 bg-white"
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 transition-all"
+                placeholder="your@email.com"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Password
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 text-gray-900 bg-white"
+                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 transition-all"
+                placeholder="Enter password"
                 required
                 minLength={6}
               />
             </div>
 
             {error && (
-              <div className="text-red-600 text-sm bg-red-50 p-3 rounded">{error}</div>
+              <div className="text-red-600 text-sm bg-red-50 border border-red-200 p-3.5 rounded-xl font-medium">
+                {error}
+              </div>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded text-white font-semibold transition active:scale-95 disabled:opacity-50 shadow-lg touch-manipulation"
-              style={{ background: 'linear-gradient(135deg, #033a66 0%, #044d87 100%)', boxShadow: '0 4px 15px rgba(3, 58, 102, 0.3)' }}
+              className="w-full py-3.5 rounded-full text-white font-semibold text-base transition-all active:scale-95 disabled:opacity-50 shadow-md touch-manipulation mt-6"
+              style={{
+                background: '#827546',
+                boxShadow: '0 4px 12px rgba(130, 117, 70, 0.25)'
+              }}
             >
               {loading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
             </button>
@@ -232,8 +193,7 @@ export function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalProps) {
           <div className="mt-6 text-center">
             <button
               onClick={() => setIsSignUp(!isSignUp)}
-              className="text-sm hover:underline"
-              style={{ color: '#827546' }}
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
             >
               {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
             </button>
