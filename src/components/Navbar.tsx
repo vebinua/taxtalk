@@ -137,10 +137,10 @@ export function Navbar({ onSearch, onAuthClick, onSubscribeClick, onAccountClick
         <div className="flex items-center space-x-2">
           <button
             onClick={onSubscribeClick || onAuthClick}
-            className="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 text-white shadow-lg active:scale-95"
+            className="px-3 py-1.5 rounded-full font-semibold text-xs transition-all duration-200 text-white shadow-md active:scale-95"
             style={{
-              background: '#007AFF',
-              boxShadow: '0 4px 12px rgba(0, 122, 255, 0.3)'
+              background: '#827546',
+              boxShadow: '0 2px 8px rgba(130, 117, 70, 0.3)'
             }}
           >
             Subscribe
@@ -148,7 +148,7 @@ export function Navbar({ onSearch, onAuthClick, onSubscribeClick, onAccountClick
 
           <button
             onClick={onAuthClick}
-            className="px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 active:scale-95 shadow-lg"
+            className="px-3 py-1.5 rounded-full font-semibold text-xs transition-all duration-200 bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 active:scale-95 shadow-md"
           >
             Sign In
           </button>
