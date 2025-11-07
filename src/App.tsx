@@ -98,14 +98,14 @@ function AppContent() {
   const continueWatchingVideos = getContinueWatchingVideos();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-black">
       <Navbar
         onSearch={(query) => console.log('Search:', query)}
         onAuthClick={() => setShowAuthModal(true)}
         onSubscribeClick={() => setShowSubscriptionModal(true)}
         onAccountClick={() => setShowAccountModal(true)}
       />
-
+      
       {!user && (
         <Hero
           onAuthClick={() => setShowAuthModal(true)}
@@ -114,12 +114,12 @@ function AppContent() {
       )}
 
       {user && (
-        <div className="pt-24 pb-6">
-          <div className="px-4 sm:px-6 md:px-8 mb-6">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+        <div className="pt-24 pb-10">
+          <div className="px-4 sm:px-6 md:px-8 mb-10">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-3 tracking-tight">
               Welcome back, {profile?.full_name || 'User'}
             </h1>
-            <p className="text-gray-500 text-base">
+            <p className="text-white/50 text-lg">
               Continue your tax learning journey
             </p>
           </div>
@@ -135,8 +135,8 @@ function AppContent() {
           />
 
           {continueWatchingVideos.length > 0 && (
-            <div className="mb-8 px-4 sm:px-6 md:px-8">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+            <div className="mb-12 px-4 sm:px-6 md:px-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight">
                 Continue Watching
               </h2>
               <ContinueWatchingRow
@@ -152,7 +152,7 @@ function AppContent() {
           )}
         </div>
       )}
-
+      
       <TaxCategories onCategoryClick={handleCategoryClick} />
 
       <AuthModal
