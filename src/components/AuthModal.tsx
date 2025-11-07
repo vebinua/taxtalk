@@ -203,7 +203,7 @@ export function AuthModal({ isOpen, onClose, onAuthSuccess, onSubscribeClick }: 
               }}
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
             >
-              {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+              {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Subscribe Now"}
             </button>
           </div>
         </div>
