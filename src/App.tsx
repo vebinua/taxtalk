@@ -4,6 +4,7 @@ import { TaxCategories } from './components/TaxCategories';
 import { CategoryVideos } from './components/CategoryVideos';
 import { AuthModal } from './components/AuthModal';
 import { SubscriptionModal } from './components/SubscriptionModal';
+import { VideoModal } from './components/VideoModal';
 import { AccountManagement } from './components/AccountManagement';
 import { LearningStats } from './components/LearningStats';
 import { ContinueWatchingRow } from './components/ContinueWatchingRow';
@@ -16,6 +17,8 @@ function AppContent() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<typeof taxVideos[0] | null>(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const { user, profile } = useAuth();
 
   const handleCategoryClick = (categoryId: number) => {
@@ -140,7 +143,10 @@ function AppContent() {
                 videos={continueWatchingVideos}
                 watchProgress={mockWatchProgress}
                 hasAccess={hasAccess}
-                onClick={(video) => console.log('Play video:', video.title)}
+                onClick={(video) => {
+                  setSelectedVideo(video);
+                  setShowVideoModal(true);
+                }}
               />
             </div>
           )}
@@ -167,6 +173,20 @@ function AppContent() {
       <AccountManagement
         isOpen={showAccountModal}
         onClose={() => setShowAccountModal(false)}
+      />
+
+      <VideoModal
+        isOpen={showVideoModal}
+        video={selectedVideo}
+        onClose={() => {
+          setShowVideoModal(false);
+          setSelectedVideo(null);
+        }}
+        hasAccess={selectedVideo ? hasAccess(selectedVideo.id) : false}
+        onPurchase={(video) => {
+          console.log('Purchase video:', video.title);
+          setShowVideoModal(false);
+        }}
       />
     </div>
   );
