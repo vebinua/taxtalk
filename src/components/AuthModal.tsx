@@ -7,6 +7,7 @@ interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAuthSuccess?: () => void;
+  onSubscribeClick?: () => void;
 }
 
 interface DemoAccount {
@@ -18,7 +19,7 @@ interface DemoAccount {
   icon: React.ReactNode;
 }
 
-export function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalProps) {
+export function AuthModal({ isOpen, onClose, onAuthSuccess, onSubscribeClick }: AuthModalProps) {
   const [isSignUp, setIsSignUp] = useState(false);
   const [showDemoAccounts, setShowDemoAccounts] = useState(true);
   const [email, setEmail] = useState('');
@@ -192,7 +193,14 @@ export function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalProps) {
 
           <div className="mt-6 text-center">
             <button
-              onClick={() => setIsSignUp(!isSignUp)}
+              onClick={() => {
+                if (!isSignUp && onSubscribeClick) {
+                  onClose();
+                  onSubscribeClick();
+                } else {
+                  setIsSignUp(!isSignUp);
+                }
+              }}
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
             >
               {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}

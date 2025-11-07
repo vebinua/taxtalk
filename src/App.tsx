@@ -76,6 +76,7 @@ function AppContent() {
         <AuthModal
           isOpen={showAuthModal}
           onClose={() => setShowAuthModal(false)}
+          onSubscribeClick={() => setShowSubscriptionModal(true)}
         />
 
         <SubscriptionModal
@@ -151,6 +152,7 @@ function AppContent() {
       <AuthModal
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
+        onSubscribeClick={() => setShowSubscriptionModal(true)}
       />
 
       <SubscriptionModal
