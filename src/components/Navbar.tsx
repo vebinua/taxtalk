@@ -46,7 +46,7 @@ export function Navbar({ onSearch, onAuthClick, onSubscribeClick, onAccountClick
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
           <div className="flex items-center gap-3">
             <h1 className="text-base font-bold">
-              Tax Academy <span style={{ color: '#827546' }}>SG</span>
+              Tax Talk <span style={{ color: '#827546' }}>Pro</span>
             </h1>
             {profile?.subscription_status === 'active' ? (
               <span className="px-2 py-0.5 rounded-full font-medium text-xs bg-green-100 text-green-700">
